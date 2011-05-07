@@ -1,0 +1,13 @@
+/**
+ * Authors
+ */
+
+Adam Shannon
+	Web Developer
+	Email: adam@ashannon.us
+	Twitter: @adamdecaf
+
+/**
+ * Site
+ */
+Lystness - A todo list that doesn't suck.
