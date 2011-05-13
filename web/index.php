@@ -27,4 +27,29 @@ require 'application/config/config.php';
 	);
 	$db = $config['mysql']['database'];
 	
-
+// Find out what type of request we are dealing with.
+require 'system/libs/detect_request_lib.php';
+$request = DetectRequest::run();
+	//print_r($request);
+	
+	// Load the header.
+	if ($request['method'] !== 'post') {
+		include 'templates/' . $config['template'] . '/html/header.html';
+	}
+	
+	// Load the specific page requested.
+	if ($request['method'] == 'unknown') {
+		// Load up the home page.
+		include 'application/helpers/home.php';
+		include 'templates/' . $config['template'] . '/html/home.html';
+		
+	} else {
+		// Load up the specific page.
+		
+		
+	}
+	
+	// Don't forget the footer!
+	if ($request['method'] !== 'post') {
+		include 'templates/' . $config['template'] . '/html/footer.html';
+	}
