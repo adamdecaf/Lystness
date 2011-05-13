@@ -42,11 +42,10 @@ $request = DetectRequest::run();
 		// Load up the home page.
 		include 'application/helpers/home.php';
 		include 'templates/' . $config['template'] . '/html/home.html';
-		
 	} else {
 		// Load up the specific page.
-		
-		
+		include 'application/helpers/' . $request['page'] . '.php';
+		include 'templates/' . $config['template'] . '/html/' . $request['page'] . '.html';
 	}
 	
 	// Don't forget the footer!
