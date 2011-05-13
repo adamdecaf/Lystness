@@ -17,3 +17,14 @@ require 'application/config/config.php';
 	if ($config['web'] !== 'enabled') {
 		exit(WEB_ACCESS_DENIED);
 	}
+	
+	// Connect to the MySQL database.
+	require 'system/libs/mysql.class.php';
+	MySQL::set_vars(
+		$config['mysql']['hostname'], 
+		$config['mysql']['username'],
+		$config['mysql']['password']
+	);
+	$db = $config['mysql']['database'];
+	
+
