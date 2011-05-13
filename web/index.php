@@ -29,7 +29,6 @@ require 'application/config/config.php';
 	
 // Load some common libraries
 require 'system/libs/actions.php';
-echo (Action::checkPassword(1, 'abc')) ? 'yes' : 'no';
 	
 // Figure out what type of user we are dealing with.
 require 'system/libs/detect_user_lib.php';
