@@ -30,10 +30,12 @@ class Action {
 	
 	/**
 	 * getHashWithId($user_id)
-	 *
+	 * Return the 40 character hash given a user id.
 	 */
 	static function getHashWithId($user_id) {
-		
+		$_id = MySQL::clean($user_id);
+		$result = MySQL::single("SELECT `password` FROM `" . MySQL::$db . "`.`users` WHERE `id` = '{$_id}' LIMIT 1;");
+		return $result['password'];
 	}
 	
 	/**

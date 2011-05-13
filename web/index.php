@@ -25,10 +25,11 @@ require 'application/config/config.php';
 		$config['mysql']['username'],
 		$config['mysql']['password']
 	);
-	$db = $config['mysql']['database'];
+	MySQL::$db = $config['mysql']['database'];
 	
 // Load some common libraries
 require 'system/libs/actions.php';
+print Action::getHashWithId(1);
 	
 // Figure out what type of user we are dealing with.
 require 'system/libs/detect_user_lib.php';
