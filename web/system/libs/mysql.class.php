@@ -14,6 +14,7 @@ class MySQL {
 	static private $password;
 	static private $connection;
 	static public $query_count;
+	static public $db;
 	
 	
 	/**
