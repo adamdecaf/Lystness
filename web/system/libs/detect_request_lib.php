@@ -3,7 +3,7 @@
  * Lystness
  * Adam Shannon
  */
- 
+
 class DetectRequest {
 
 	/**
