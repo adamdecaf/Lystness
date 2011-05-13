@@ -45,7 +45,12 @@ $request = DetectRequest::run();
 	} else {
 		// Load up the specific page.
 		include 'application/helpers/' . $request['page'] . '.php';
-		include 'templates/' . $config['template'] . '/html/' . $request['page'] . '.html';
+		
+		// Only load the template page if needed
+		// ['submit'] = true, for requests that send data to the server.
+		if ($request['submit'] != true) {
+			include 'templates/' . $config['template'] . '/html/' . $request['page'] . '.html';
+		}
 	}
 	
 	// Don't forget the footer!
