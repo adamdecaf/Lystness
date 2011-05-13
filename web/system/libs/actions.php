@@ -19,13 +19,13 @@ class Action {
 		return $salt;
 		
 	}
-	 
+	
 	/**
-	 * genHash($pass)
-	 * Generate a sha1 hash from a given string.
+	 * genHash($str)
+	 * Return the sha1 of a string
 	 */
-	static function genHash($pass) {
-		return sha1($pass . self::genSalt());
+	static function genHash($str) {
+		return sha1($str);
 	}
 	
 	/**
@@ -43,7 +43,16 @@ class Action {
 	 *
 	 */
 	static function checkPassword($user_id, $submitted_pass) {
+		$_id = MySQL::clean($user_id);
+		$_pass = MySQL::clean($submitted_pass);
+		$__hash = self::getHashWithId($_id);
+		$__salt = MySQL::single("SELECT `salt` FROM `" . MySQL::$db . "`.`users` WHERE `id` = '{$_id}' LIMIT 1;");
 		
+		if (self::genHash($_pass . $__salt['salt']) == $__hash) {
+			return true;
+		}
+		
+		return false;
 	}
 	
 	/**
