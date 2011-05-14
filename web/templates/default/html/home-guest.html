@@ -1,2 +1,56 @@
 
+	<h3><?php echo HOME_GUEST_TITLE; ?></h3>
 	
+	<p>
+		<?php echo HOME_GUEST_DESC; ?>
+	</p>
+	
+	<h3><?php echo REGISTER_TITLE; ?></h3>
+	
+	<p>
+		<?php echo REGISTER_DESC; ?>
+	</p>
+	
+	<div>
+		<form action="?login" method="POST" id="loginForm">
+			<fieldset>
+				<label>
+					<?php echo LOGIN_EMAIL; ?>
+					<input type="text" name="email" />
+				</label>
+				<br />
+				
+				<label>
+					<?php echo LOGIN_PASSWORD; ?>
+					<input type="password" name="password" />
+				</label>
+				<br />
+				
+				<input type="submit" value="<?php echo LOGIN_SUBMIT; ?>" />
+			</fieldset>
+		</form>
+	
+		<form action="?register" method="POST" id="registerForm">
+			<fieldset>
+				<label>
+					<?php echo REGISTER_EMAIL;?>
+					<input type="text" name="email" />
+				</label>
+				<br />
+		
+				<label>
+					<?php echo REGISTER_PASSWORD;?>
+					<input type="password" name="password" />
+				</label>
+				<br />
+		
+				<label>
+					<?php echo REGISTER_PASSWORD_VERIFY;?>
+					<input type="password" name="password2" />
+				</label>
+				<br />
+		
+				<input type="submit" value="<?php echo REGISTER_SUBMIT; ?>" />
+			</fieldset>
+		</form>
+	</div>

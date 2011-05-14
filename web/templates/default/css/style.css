@@ -5,21 +5,22 @@
  */
  
 body {
-	/* background-color: #100d1e; */
+	background-color: #FFFFFF;
 	border: 1px solid #000000;
+	border-radius: 10px;
 	margin: auto;
 	margin-top: 10px; 
 	width: 768px;
 }
 
 header {
-
+	/* Nothing */
 }
 
 	header h1 {
 		font-family: "Helvetica", Arial;
 		font-size: 2em;
-		margin-left: 10px;
+		margin-left: 20px;
 	}
 	
 		header h1 a {
@@ -37,3 +38,31 @@ header {
 			color: #000000;
 			text-decoration: none;
 		}
+		
+section#content {
+	margin: 5px 10px 5px 10px;
+}
+
+	section#content h3 {
+		font-family: "Helvetica", Arial;
+		letter-spacing: 1px;
+	}
+	
+	section#content p {
+		
+	}
+	
+	#loginForm {
+		float: right;
+		width: 45%;
+	}
+	
+	#registerForm {
+		width: 45%;
+	}
+		
+footer {
+	margin-bottom: 10px;
+	margin-top: 10px;
+	text-align: center;
+}
