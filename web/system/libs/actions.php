@@ -60,7 +60,9 @@ class Action {
 	 * 
 	 */
 	static function getEmailWithId($user_id) {
-		
+		$_id = MySQL::clean($user_id);
+		$email = MySQL::single("SELECT `email` FROM `" . MySQL::$db . "`.`users` WHERE `id` = '{$_id}' LIMIT 1");
+		return $email['email'];
 	}
 	 
 	/**
@@ -68,7 +70,9 @@ class Action {
 	 * 
 	 */
 	static function getIdWithEmail($email) {
-	
+		$_email = MySQL::clean($email);
+		$id = MySQL::single("SELECT `id` FROM `" . MySQL::$db . "`.`users` WHERE `email` = '{$_email}' LIMIT 1");
+		return $id['id'];
 	}
 	
 	/**
@@ -76,7 +80,14 @@ class Action {
 	 * 
 	 */
 	static function authTagChange($user_id, $tag_id) {
+		$_tag = MySQL::clean($tag_id);
+		$admins = MySQL::single("SELECT `admin` FROM `" . MySQL::$db . "`.`tags` WHERE `id` = '{$_tag}' LIMIT 1");
 		
+		$_id = MySQL::clean($user_id);
+		if (preg_match("/(,?{$_id},)/i", $admins['admin'])) {
+			return true;
+		}
+		return false;
 	}
 
 	/**

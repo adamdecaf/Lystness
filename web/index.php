@@ -34,6 +34,14 @@ require 'system/libs/actions.php';
 	$user = Action::detectUser();
 		//print_r($user);
 	
+	// Some testing...
+	/*
+	echo 'There should be "yesyesyes"<br />';
+	echo (Action::authTagChange(1,1)) ? 'yes' : 'no';
+	echo (Action::authTagChange(1,2)) ? 'yes' : 'no';
+	echo (Action::authTagChange(1,3)) ? 'yes' : 'no';
+	*/
+	
 // Find out what type of request we are dealing with.
 require 'system/libs/detect_request_lib.php';
 $request = DetectRequest::run();
