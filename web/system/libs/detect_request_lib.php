@@ -74,6 +74,11 @@ class DetectRequest {
 			case array_key_exists('login', $_POST):
 				$details['page'] = 'login';
 			break;
+			
+			// Show an page on errors.
+			default:
+				$details['page'] = 'error';
+			break;
 		}
 		
 		return $details;

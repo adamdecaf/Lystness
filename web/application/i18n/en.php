@@ -8,6 +8,10 @@
 define('SITE_TITLE', 'Lystness -- The best todo list');
 define('WEB_ACCESS_DENIED', 'We\'re sorry, but web access to the site is currently disabled.');
 
+// Errors
+define('ERROR_404_TITLE', '404 - Page Not Found');
+define('ERROR_404_DESC', 'Whoops, it looks like the page you are trying to view does not exist. Have we broken something? <a href="index.php?contact">Tell us about it!</a>');
+
 // Nav Elements
 define('NAV_TOUR', 'Tour');
 define('NAV_CONTACT', 'Contact');
