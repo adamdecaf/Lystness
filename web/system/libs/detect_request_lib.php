@@ -37,10 +37,6 @@ class DetectRequest {
 				$details['page'] = 'legal';
 			break;
 			
-			case array_key_exists('register', $_GET):
-				$details['page'] = 'register';
-			break;
-			
 			case array_key_exists('tag', $_GET):
 				$details['page'] = 'tag';
 			break;
@@ -68,6 +64,15 @@ class DetectRequest {
 			case array_key_exists('tag_submit', $_GET):
 				$details['page'] = 'tag_submit';
 				$details['submit'] = true;
+			break;
+			
+			// POST requets
+			case array_key_exists('register', $_POST):
+				$details['page'] = 'register';
+			break;
+			
+			case array_key_exists('login', $_POST):
+				$details['page'] = 'login';
 			break;
 		}
 		
