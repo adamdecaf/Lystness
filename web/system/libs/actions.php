@@ -120,6 +120,14 @@ class Action {
 	}
 	
 	/**
+	 * detectUser()
+	 *
+	 */
+	static function detectUser() {
+		
+	}
+	
+	/**
 	 * updateEmail($user_id, $new_email)
 	 *
 	 */

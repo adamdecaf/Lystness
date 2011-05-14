@@ -30,10 +30,9 @@ require 'application/config/config.php';
 // Load some common libraries
 require 'system/libs/actions.php';
 	
-// Figure out what type of user we are dealing with.
-require 'system/libs/detect_user_lib.php';
-$user = DetectUser::run();
-	//print_r($user);
+	// Figure out what type of user we are dealing with.
+	$user = Action::detectUser();
+		//print_r($user);
 	
 // Find out what type of request we are dealing with.
 require 'system/libs/detect_request_lib.php';
