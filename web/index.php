@@ -55,8 +55,12 @@ $request = DetectRequest::run();
 	// Load the specific page requested.
 	if ($request['method'] == 'unknown') {
 		// Load up the home page.
-		include 'application/helpers/home.php';
-		include 'templates/' . $config['template'] . '/html/home.html';
+		if ($user['is_user']) {
+			include 'application/helpers/home.php';
+			include 'templates/' . $config['template'] . '/html/home.html';
+		} else {
+			include 'templates/' . $config['template'] . '/html/home-guest.html';
+		}
 	} else {
 		// Load up the specific page.
 		include 'application/helpers/' . $request['page'] . '.php';

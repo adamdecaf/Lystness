@@ -1,0 +1,39 @@
+/**
+ * Lystness
+ * Adam Shannon
+ * http://lystness.com
+ */
+ 
+body {
+	/* background-color: #100d1e; */
+	border: 1px solid #000000;
+	margin: auto;
+	margin-top: 10px; 
+	width: 768px;
+}
+
+header {
+
+}
+
+	header h1 {
+		font-family: "Helvetica", Arial;
+		font-size: 2em;
+		margin-left: 10px;
+	}
+	
+		header h1 a {
+			color: #000000;
+			text-decoration: none;
+		}
+
+	header nav {
+		float: right;
+		font-size: 1.5em;
+		margin-right: 10px;
+	}
+	
+		header nav a {
+			color: #000000;
+			text-decoration: none;
+		}

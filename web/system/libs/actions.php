@@ -135,7 +135,11 @@ class Action {
 	 *
 	 */
 	static function detectUser() {
+		$details = array();
+			// Temp
+			$details['is_user'] = false;
 		
+		return $details;
 	}
 	
 	/**
