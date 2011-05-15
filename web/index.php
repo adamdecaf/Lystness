@@ -46,6 +46,7 @@ require 'system/libs/actions.php';
 require 'system/libs/detect_request_lib.php';
 $request = DetectRequest::run();
 	//print_r($request);
+	//print_r($_COOKIE);
 	
 	// Load the header.
 	if ($request['method'] !== 'post') {

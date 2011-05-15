@@ -119,15 +119,39 @@ class Action {
 	 *
 	 */
 	static function createUser($email, $submitted_pass, $timezone, $i18n) {
+		// Should check for duplicate emails.
+		$_salt = self::genSalt();
+		$_hash = self::genHash($submitted_pass . $_salt);
+		$_email = MySQL::clean($email);
+		$_timezone = MySQL::clean($timezone);
+		$_i18n = MySQL::clean($i18n);
+		$_cookie = self::genSalt(30);
 		
+		$sql = "INSERT INTO `" . MySQL::$db . "`.`users` (`id`,`email`,`password`,`salt`,`timezone`,`i18n`,`cookie`) VALUES ";
+		$sql .= "('0','{$_email}','{$_hash}','{$_salt}','{$_timezone}','{$_i18n}','{$_cookie}');";
+		MySQL::query($sql);
+		
+		setcookie('user', $_cookie);
 	}
 	
 	/**
 	 * authUser($user_id)
 	 *
 	 */
-	static function authUser($user_id) {
+	static function authUser($cookie) {
+		$auth = array();
+		$auth['valid'] = false;
+		$auth['id'] = '-1';
 		
+		$_cookie = MySQL::clean($cookie);
+		$sql = "SELECT `id` FROM `" . MySQL::$db . "`.`users` WHERE `cookie` = '{$_cookie}' LIMIT 1";
+		$result = MySQL::single($sql);
+		
+		if (!empty($result)) {
+			$auth['valid'] = true;
+			$auth['id'] = $result['id'];
+		}
+		return $auth;
 	}
 	
 	/**
@@ -136,8 +160,15 @@ class Action {
 	 */
 	static function detectUser() {
 		$details = array();
-			// Temp
-			$details['is_user'] = false;
+		$details['is_user'] = false;
+		
+		if (!empty($_COOKIE) && $_COOKIE['user'] !== '') {
+			$auth = self::authUser($_COOKIE['user']);
+			if ($auth['valid']) {
+				$details['is_user'] = true;
+				$details['user_id'] = $auth['id'];
+			}
+		}
 		
 		return $details;
 	}
