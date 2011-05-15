@@ -13,6 +13,6 @@ if ($_password !== $_password2) {
 }
 
 // Create a user now.
-Action::createUser($_email, $password, '-5', '0');
+Action::createUser($_email, $_password, '-5', '0');
 header('Location: index.php');
 exit();

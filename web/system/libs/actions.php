@@ -48,6 +48,8 @@ class Action {
 		$__hash = self::getHashWithId($_id);
 		$__salt = MySQL::single("SELECT `salt` FROM `" . MySQL::$db . "`.`users` WHERE `id` = '{$_id}' LIMIT 1;");
 		
+		echo $_pass . $__salt['salt'] . '<br />';
+		//echo '-' . self::genHash($_pass . $__salt['salt']) . '- -- -' . $__hash . '-<br />';
 		if (self::genHash($_pass . $__salt['salt']) == $__hash) {
 			return true;
 		}
@@ -99,11 +101,14 @@ class Action {
 	}
 	 
 	/**
-	 * checkCookie($user_id)
+	 * createCookieWithId($user_id)
 	 *
 	 */
-	static function checkCookie($user_id) {
-		
+	static function createCookieWithId($user_id) {
+		$_id = MySQL::clean($user_id);
+		$sql = "SELECT `cookie` FROM `" . MySQL::$db . "`.`users` WHERE `id` = '{$_id}' LIMIT 1";
+		$cookie = MySQL::single($sql);
+		self::createCookie($cookie['cookie']);
 	}
 	 
 	/**
