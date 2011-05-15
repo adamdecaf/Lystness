@@ -94,8 +94,8 @@ class Action {
 	 * createCookie($user_id)
 	 *
 	 */
-	static function createCookie($user_id) {
-	
+	static function createCookie($cookie) {
+		setcookie('user', $cookie);
 	}
 	 
 	/**
@@ -131,7 +131,7 @@ class Action {
 		$sql .= "('0','{$_email}','{$_hash}','{$_salt}','{$_timezone}','{$_i18n}','{$_cookie}');";
 		MySQL::query($sql);
 		
-		setcookie('user', $_cookie);
+		self::createCookie($_cookie);
 	}
 	
 	/**
