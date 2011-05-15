@@ -111,7 +111,7 @@ class Action {
 	 *
 	 */
 	static function deleteCookie($user_id) {
-		
+		setcookie('user', false);
 	}
 	
 	/**

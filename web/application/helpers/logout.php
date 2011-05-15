@@ -4,6 +4,6 @@
  * Adam Shannon
  */
  
-setcookie('user', false);
+Action::deleteCookie();
 header("Location: index.php");
 exit();
