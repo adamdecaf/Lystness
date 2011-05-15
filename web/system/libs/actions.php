@@ -132,9 +132,22 @@ class Action {
 		$_i18n = MySQL::clean($i18n);
 		$_cookie = self::genSalt(30);
 		
+		// Check to make sure someone with that email doesn't exist.
+		$email_2x = self::getIdWithEmail($_email);
+		if (!empty($email_2x)) {
+			exit(REGISTER_EMAIL_EXISTS);
+		}
+		
 		$sql = "INSERT INTO `" . MySQL::$db . "`.`users` (`id`,`email`,`password`,`salt`,`timezone`,`i18n`,`cookie`) VALUES ";
 		$sql .= "('0','{$_email}','{$_hash}','{$_salt}','{$_timezone}','{$_i18n}','{$_cookie}');";
 		MySQL::query($sql);
+		
+		// Find the user_id
+		$id = self::getIdWithEmail($_email);
+		// Create a sample tag
+		$tag = self::createDefaultTag($id);
+		// Create a sample item
+		self::createDefaultItem($id, $tag);
 		
 		self::createCookie($_cookie);
 	}
@@ -176,6 +189,32 @@ class Action {
 		}
 		
 		return $details;
+	}
+	
+	/**
+	 * createDefaultTag($user_id)
+	 */
+	static function createDefaultTag($user_id) {
+		$_id = MySQL::clean($user_id);
+		$sql = "INSERT INTO `". MySQL::$db . "`.`tags` (`id`,`title`,`visible`,`admin`,`count`) VALUES ";
+		$sql .= "('0','" . DEFAULT_TAG_NAME . "','{$_id},','{$_id},','0');";	
+		MySQL::query($sql);
+		
+		$sql = "SELECT `id` FROM `" . MySQL::$db . "`.`tags` WHERE `visible` = '{$_id},' AND `admin` = '{$_id},' LIMIT 1";
+		$ret = MySQL::single($sql);
+		return $ret['id'];
+	}
+	
+	/**
+	 * createDefaultItem($user_id, $tag)
+	 */
+	static function createDefaultItem($user_id, $tag) {
+		$_id = MySQL::clean($user_id);
+		$_tag = MySQL::clean($tag);
+		$week = time() + (86400 * 7);
+		$sql = "INSERT INTO `" . MySQL::$db . "`.`items` (`id`,`tag`,`description`,`deadline`,`completed`) VALUES ";
+		$sql .= "('0','{$_tag}','" . DEFAULT_ITEM_NAME . "','" . $week . "','0');";
+		MySQL::query($sql);
 	}
 	
 	/**
