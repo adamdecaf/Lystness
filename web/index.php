@@ -67,7 +67,7 @@ $request = DetectRequest::run();
 		
 		// Only load the template page if needed
 		// ['submit'] = true, for requests that send data to the server.
-		if ($request['submit'] != true) {
+		if ($request['submit'] != true || $request['method'] == 'get') {
 			include 'templates/' . $config['template'] . '/html/' . $request['page'] . '.html';
 		}
 	}
