@@ -16,11 +16,11 @@ class DetectRequest {
 		$details['submit'] = false;
 		
 		// Find out if the request is a GET or POST
-		if (!empty($_GET)) {
-			$details['method'] = 'get';
+		if (!empty($_POST)) {
+			$details['method'] = 'post';
 		} else {
-			if (!empty($_POST)) {
-				$details['method'] = 'post';
+			if (!empty($_GET)) {
+				$details['method'] = 'get';
 			} else {
 				$details['method'] = 'unknown';
 			}
