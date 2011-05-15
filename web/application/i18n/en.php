@@ -16,6 +16,7 @@ define('ERROR_404_DESC', 'Whoops, it looks like the page you are trying to view 
 define('NAV_TOUR', 'Tour');
 define('NAV_CONTACT', 'Contact');
 define('NAV_LEGAL', 'Legal');
+define('NAV_LOGOUT', 'Logout');
 
 // Footer
 define('FOOTER_COPYRIGHT', 'Copyright &copy; 2011 -- Adam Shannon -- All Rights Reserved');

@@ -46,6 +46,12 @@ class DetectRequest {
 				$details['page'] = 'tour';
 			break;
 			
+			case array_key_exists('logout', $_GET):
+				$details['page'] = 'logout';
+				$details['submit'] = true;
+				$details['method'] = 'post';
+			break;
+			
 			// Data Pushes
 			case array_key_exists('contact_submit', $_GET):
 				$details['page'] = 'contact_submit';
