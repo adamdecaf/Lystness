@@ -248,5 +248,17 @@ class Action {
 	static function updateI18n($user_id, $i18n) {
 		
 	}
+	
+	/**
+	 * printTimezones()
+	 */
+	static function printTimezones() {
+		// Just print a dropdown
+		echo '<select name="timezone">';
+			foreach (TIMEZONES::$zones as $key => $value) {
+				echo '<option value="'. $key . '">' . $value . '</option>';
+			}
+		echo '</select>';
+	}
 
 }

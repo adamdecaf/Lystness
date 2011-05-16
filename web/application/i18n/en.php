@@ -36,8 +36,9 @@ define('REGISTER_DESC', 'It looks like you haven\'t registered yet. It\'s <em>fr
 	define('REGISTER_EMAIL', 'Your Email: ');
 	define('REGISTER_PASSWORD', 'Your Password: ');
 	define('REGISTER_PASSWORD_VERIFY', 'Verify Password: ');
+	define('REGISTER_TIMEZONE', 'Your Timezone: ');
 	define('REGISTER_SUBMIT', 'Register');
-
+	
 // Registration Errors
 define('REGISTER_PASSWORDS_NOT_MATCH', 'Whoops, it looks like your passwords don\'t match.');
 	define('REGISTER_EMAIL_EXISTS', 'Sorry, but that email is already in use.');

@@ -50,9 +50,16 @@
 					<input type="password" name="password2" />
 				</label>
 				<br />
+				
+				<label>
+					<?php echo REGISTER_TIMEZONE; ?>
+					<?php Action::printTimezones(); ?>
+				</label>
+				<br />
 		
 				<input type="hidden" name="register" />
 				<input type="submit" value="<?php echo REGISTER_SUBMIT; ?>" />
 			</fieldset>
 		</form>
 	</div>
+	
