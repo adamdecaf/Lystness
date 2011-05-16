@@ -1,6 +1,10 @@
 
 	<aside id="tags">
 		<strong><?php echo HOME_TAGS; ?></strong>
+		
+		<ul>
+			<?php echo print_tags($tags); ?>
+		</ul>
 	</aside>
 	
 	<section id="user-home">
@@ -8,8 +12,7 @@
 		<h4><?php echo HOME_TITLE; ?></h4>
 		
 		<ul>
-			<li>Hello!</li>
-			<li>Whats's Up?</li>
+			<?php print_items($items); ?>
 		</ul>
 		
 	</section>

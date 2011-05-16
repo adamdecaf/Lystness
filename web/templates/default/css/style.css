@@ -67,6 +67,14 @@ aside#tags {
 	width: 30%;
 }
 
+	aside#tags ul {
+		/* */
+	}
+	
+		aside#tags ul li {
+			list-style-type: none;
+		}
+
 section#user-home {
 	border-right: 1px solid #000000;
 	width: 65%;
@@ -77,6 +85,7 @@ section#user-home {
 	}
 	
 		section#user-home ul li {
+			background-color: #CCCCCC;
 			list-style-type: none;
 		}
 		

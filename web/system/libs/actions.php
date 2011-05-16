@@ -233,8 +233,26 @@ class Action {
 	 * getItems($user_id)
 	 * Return an array of the items for a user that are still due.
 	 */
-	static function getItems($user_id) {
-	
+	static function getItems($user_id, $tags) {
+		$_id = MySQL::clean($user_id);
+		$now = @time();
+		$items = array();
+		
+		foreach ($tags as $tag) {
+			$_tmp = MySQL::search("SELECT * FROM `" . MySQL::$db . "`.`items` WHERE `tag` = '{$tag['tag_id']}' AND `deadline` > '{$now}';");
+			foreach ($_tmp as $_a) {
+				array_push($items, array(
+					'id' => $_a['id'],
+					'tag' => $_a['tag'],
+					'tag-desc' => self::getTagTitle($tag['tag_id']),
+					'desc' => $_a['description'],
+					'deadline' => $_a['deadline'],
+					'completed' => $_a['completed'],
+				));
+			}
+		}
+		
+		return $items;
 	}
 	
 	/**
@@ -242,7 +260,31 @@ class Action {
 	 * Return an array of the tags that are visible to a user.
 	 */
 	static function getTags($user_id) {
+		$_id = MySQL::clean($user_id);
+		$tags = array();
 		
+		$sql = "SELECT `tag_id` FROM `" . MySQL::$db . "`.`user-tags` WHERE `user_id` = '{$_id}'";
+		$_tags = MySQL::search($sql);
+		
+		foreach ($_tags as $tag) {
+			$_tmp = MySQL::single("SELECT `title` FROM `" . MySQL::$db . "`.`tags` WHERE `id` = '{$tag['tag_id']}' LIMIT 1");
+			$tags[] = array(
+				'tag_id' => $tag['tag_id'],
+				'title' => $_tmp['title']
+			);
+		}
+		
+		return $tags;
+	}
+	
+	/**
+	 * getTagTitle($tag_id)
+	 * Return the tag's title
+	 */
+	static function getTagTitle($tag_id) {
+		$_id = MySQL::clean($tag_id);
+		$_tmp = MySQL::single("SELECT `title` FROM `" . MySQL::$db . "`.`tags` WHERE `id` = '{$_id}' LIMIT 1");
+		return $_tmp['title'];
 	}
 	
 	/**
