@@ -60,6 +60,25 @@ section#content {
 	#registerForm {
 		width: 45%;
 	}
+
+/* Logged in CSS */	
+aside#tags {
+	float: right;
+	width: 30%;
+}
+
+section#user-home {
+	border-right: 1px solid #000000;
+	width: 65%;
+}
+
+	section#user-home ul {
+		/* */
+	}
+	
+		section#user-home ul li {
+			list-style-type: none;
+		}
 		
 footer {
 	margin-bottom: 10px;

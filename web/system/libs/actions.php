@@ -82,11 +82,11 @@ class Action {
 	 * 
 	 */
 	static function authTagChange($user_id, $tag_id) {
-		$_tag = MySQL::clean($tag_id);
-		$admins = MySQL::single("SELECT `admin` FROM `" . MySQL::$db . "`.`tags` WHERE `id` = '{$_tag}' LIMIT 1");
-		
 		$_id = MySQL::clean($user_id);
-		if (preg_match("/(,?{$_id},)/i", $admins['admin'])) {
+		$_tag = MySQL::clean($tag_id);
+		$admins = MySQL::single("SELECT `tag_id` FROM `". MySQL::$db . "`.`admin-tags` WHERE `user_id` = '{$_id}' AND `tag_id` = '{$_tag}' LIMIT 1;");
+		
+		if (!empty($admins) && $admins['tag_id'] == $_tag) {
 			return true;
 		}
 		return false;
@@ -196,13 +196,25 @@ class Action {
 	 */
 	static function createDefaultTag($user_id) {
 		$_id = MySQL::clean($user_id);
-		$sql = "INSERT INTO `". MySQL::$db . "`.`tags` (`id`,`title`,`visible`,`admin`,`count`) VALUES ";
-		$sql .= "('0','" . DEFAULT_TAG_NAME . "','{$_id},','{$_id},','0');";	
+		
+		// Insert the tag into `tag`
+		$sql = "INSERT INTO `". MySQL::$db . "`.`tags` (`id`,`title`, `author`,`count`) VALUES ";
+		$sql .= "('0','" . DEFAULT_TAG_NAME . "', '{$_id}','0');";	
 		MySQL::query($sql);
 		
-		$sql = "SELECT `id` FROM `" . MySQL::$db . "`.`tags` WHERE `visible` = '{$_id},' AND `admin` = '{$_id},' LIMIT 1";
-		$ret = MySQL::single($sql);
-		return $ret['id'];
+		// Pull the newly created tag's id
+		$sql = "SELECT `id` FROM `". MySQL::$db . "`.`tags` WHERE `author` = '{$_id}' ORDER BY `id` DESC LIMIT 1;";
+		$latest = MySQL::single($sql);
+		
+		// Use that to create the reference for visibility
+		$sql = "INSERT INTO `". MySQL::$db . "`.`user-tags` (`user_id`,`tag_id`) VALUES ('{$_id}', '{$latest['id']}');";
+		MySQL::query($sql);
+		
+		// and for adminship.
+		$sql = "INSERT INTO `". MySQL::$db . "`.`admin-tags` (`user_id`,`tag_id`) VALUES ('{$_id}', '{$latest['id']}');";
+		MySQL::query($sql);
+		
+		return $latest['id'];
 	}
 	
 	/**
@@ -215,6 +227,22 @@ class Action {
 		$sql = "INSERT INTO `" . MySQL::$db . "`.`items` (`id`,`tag`,`description`,`deadline`,`completed`) VALUES ";
 		$sql .= "('0','{$_tag}','" . DEFAULT_ITEM_NAME . "','" . $week . "','0');";
 		MySQL::query($sql);
+	}
+	
+	/**
+	 * getItems($user_id)
+	 * Return an array of the items for a user that are still due.
+	 */
+	static function getItems($user_id) {
+	
+	}
+	
+	/**
+	 * getTags($user_id)
+	 * Return an array of the tags that are visible to a user.
+	 */
+	static function getTags($user_id) {
+		
 	}
 	
 	/**

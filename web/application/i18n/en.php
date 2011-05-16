@@ -46,3 +46,7 @@ define('REGISTER_PASSWORDS_NOT_MATCH', 'Whoops, it looks like your passwords don
 // Default titles for tags and items
 define('DEFAULT_TAG_NAME', 'My List');
 define('DEFAULT_ITEM_NAME', 'My todo list');
+
+// Home page (logged in)
+define('HOME_TITLE', 'Your List');
+define('HOME_TAGS', 'Tags');
