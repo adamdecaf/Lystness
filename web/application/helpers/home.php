@@ -28,3 +28,19 @@ function print_items($items) {
 	}
 }
 
+function print_deadline_items() {
+	$now = @time();
+	$day = @date('m/d', $now);
+	
+	for ($i = 0; $i < 30; $i++) {
+		echo "<option value='{$now}'>{$day}</option>";
+		$now += 86400;
+		$day = @date('m/d', $now);
+	}
+}
+
+function print_tag_items($tags) {
+	foreach ($tags as $tag) {
+		echo "<option value='{$tag['tag_id']}'>{$tag['title']}</option>";
+	}
+}
