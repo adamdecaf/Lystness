@@ -218,6 +218,30 @@ class Action {
 	}
 	
 	/**
+	 * createTag($user_id, $title)
+	 */
+	static function createTag($user_id, $title) {
+		$_id = MySQL::clean($user_id);
+		$_title = MySQL::clean(substr($title, 0, 30));
+	
+		$sql = "INSERT INTO `". MySQL::$db . "`.`tags` (`id`,`title`, `author`,`count`) VALUES ";
+		$sql .= "('0','{$_title}', '{$_id}','0');";	
+		MySQL::query($sql);
+		
+		// Pull the newly created tag's id
+		$sql = "SELECT `id` FROM `". MySQL::$db . "`.`tags` WHERE `author` = '{$_id}' ORDER BY `id` DESC LIMIT 1;";
+		$latest = MySQL::single($sql);
+		
+		// Use that to create the reference for visibility
+		$sql = "INSERT INTO `". MySQL::$db . "`.`user-tags` (`user_id`,`tag_id`) VALUES ('{$_id}', '{$latest['id']}');";
+		MySQL::query($sql);
+		
+		// and for adminship.
+		$sql = "INSERT INTO `". MySQL::$db . "`.`admin-tags` (`user_id`,`tag_id`) VALUES ('{$_id}', '{$latest['id']}');";
+		MySQL::query($sql);
+	}
+	
+	/**
 	 * createDefaultItem($user_id, $tag)
 	 */
 	static function createDefaultItem($user_id, $tag) {
@@ -233,13 +257,15 @@ class Action {
 	 * createItem($user_id, $desc, $deadline, $tag)
 	 */
 	static function createItem($desc, $deadline, $tag) {
-		$_id = MySQL::clean($user_id);
-		$_desc = MySQL::clean($desc);
+		$_desc = MySQL::clean(substr($desc, 0, 150));
 		$_deadline = MySQL::clean($deadline);
 		$_tag = MySQL::clean($tag);
 		
 		$sql = "INSERT INTO `" . MySQL::$db . "`.`items` (`id`,`tag`,`description`,`deadline`,`completed`) VALUES ";
 		$sql .= "('0','{$_tag}','{$_desc}','{$deadline}','0');";
+		
+		// TODO: Increment the tag's `count` value.
+		
 		MySQL::query($sql);
 	}
 	
@@ -277,7 +303,7 @@ class Action {
 		$_id = MySQL::clean($user_id);
 		$tags = array();
 		
-		$sql = "SELECT `tag_id` FROM `" . MySQL::$db . "`.`user-tags` WHERE `user_id` = '{$_id}'";
+		$sql = "SELECT `tag_id` FROM `" . MySQL::$db . "`.`user-tags` WHERE `user_id` = '{$_id}';";
 		$_tags = MySQL::search($sql);
 		
 		foreach ($_tags as $tag) {

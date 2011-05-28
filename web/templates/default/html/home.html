@@ -5,6 +5,13 @@
 		<ul>
 			<?php echo print_tags($tags); ?>
 		</ul>
+		
+		<div id="create-tag">
+			<form action="index.php" method="GET">
+				<input type="text" id="new-title" name="title" /><br />
+				<input type="button" value="<?php echo HOME_CREATE_TAG; ?>" onclick="send_new_tag();" />
+			</form>
+		</div>
 	</aside>
 	
 	<section id="user-home">
@@ -25,7 +32,7 @@
 				
 					<br />
 				
-					<input type="button" onclick="send_new_item();" value="Create Item" />
+					<input type="button" onclick="send_new_item();" value="<?php echo HOME_CREATE_ITEM; ?>" />
 				</div>
 				<div>
 					<textarea id="new-desc" name="desc"></textarea>

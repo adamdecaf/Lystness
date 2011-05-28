@@ -53,6 +53,10 @@ $request = DetectRequest::run();
 		include 'application/helpers/new_item.php';
 		exit();
 	}
+	if (array_key_exists('new_tag', $_GET) && $_GET['new_tag']) {
+		include 'application/helpers/new_tag.php';
+		exit();
+	}
 	
 	// Load the header.
 	if ($request['method'] !== 'post') {

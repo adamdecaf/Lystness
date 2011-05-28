@@ -51,3 +51,5 @@ define('DEFAULT_ITEM_NAME', 'My todo list');
 define('HOME_TITLE', 'Your List');
 define('HOME_TAGS', 'Tags');
 define('HOME_NO_ITEMS', 'Sorry, there are no items to display.');
+define('HOME_CREATE_TAG', 'Create Tag');
+define('HOME_CREATE_ITEM', 'Create Item');
