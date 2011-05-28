@@ -50,3 +50,4 @@ define('DEFAULT_ITEM_NAME', 'My todo list');
 // Home page (logged in)
 define('HOME_TITLE', 'Your List');
 define('HOME_TAGS', 'Tags');
+define('HOME_NO_ITEMS', 'Sorry, there are no items to display.');

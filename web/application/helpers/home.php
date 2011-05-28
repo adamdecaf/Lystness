@@ -14,13 +14,17 @@ function print_tags($tags) {
 }
 
 function print_items($items) {
-	foreach ($items as $item) {
-		echo '<li><span>';
-			echo $item['desc'] . ' -- <a href="index.php?tag=' . $item['tag'] . '">' . $item['tag-desc'] . '</a><br />';
-			echo 'Completed: ';
-				echo ($item['completed'] == '1') ? 'yes' : 'no';
-			echo ' -- Due: ' . $item['deadline'];
-		echo '</span></li>';
-	}	
+	if (count($items) < 1) {
+		echo HOME_NO_ITEMS;
+	} else {
+		foreach ($items as $item) {
+			echo '<li><span>';
+				echo $item['desc'] . ' -- <a href="index.php?tag=' . $item['tag'] . '">' . $item['tag-desc'] . '</a><br />';
+				echo 'Completed: ';
+					echo ($item['completed'] == '1') ? 'yes' : 'no';
+				echo ' -- Due: ' . $item['deadline'];
+			echo '</span></li>';
+		}	
+	}
 }
 
