@@ -253,7 +253,7 @@ class Action {
 		$items = array();
 		
 		foreach ($tags as $tag) {
-			$_tmp = MySQL::search("SELECT * FROM `" . MySQL::$db . "`.`items` WHERE `tag` = '{$tag['tag_id']}' AND `deadline` > '{$now}';");
+			$_tmp = MySQL::search("SELECT * FROM `" . MySQL::$db . "`.`items` WHERE `tag` = '{$tag['tag_id']}' AND `deadline` > '{$now}' ORDER BY `deadline` ASC;");
 			foreach ($_tmp as $_a) {
 				array_push($items, array(
 					'id' => $_a['id'],

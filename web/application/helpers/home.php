@@ -22,7 +22,7 @@ function print_items($items) {
 				echo $item['desc'] . ' -- <a href="index.php?tag=' . $item['tag'] . '">' . $item['tag-desc'] . '</a><br />';
 				echo 'Completed: ';
 					echo ($item['completed'] == '1') ? 'yes' : 'no';
-				echo ' -- Due: ' . $item['deadline'];
+				echo ' -- Due: ' . @date('m/d', $item['deadline']);
 			echo '</span></li>';
 		}	
 	}

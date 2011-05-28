@@ -99,8 +99,13 @@ section#user-home {
 	}
 	
 		section#user-home ul li {
-			background-color: #CCCCCC;
-			list-style-type: none;so...so... it should just need to propagate through
+			background-color: #EEEEEE;
+			border: 1px solid #000000;
+			border-radius: 5px;
+			list-style-type: none;
+			margin-bottom: 5px;
+			padding: 3px;
+			width: 95%;
 		}
 		
 footer {
