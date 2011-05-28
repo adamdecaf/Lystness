@@ -13,22 +13,22 @@
 		<div id="create-item">
 			<form action="index.php" method="GET">
 				<div class="right">
-					<select name="deadline">
+					<select id="new-deadline" name="deadline">
 						<?php print_deadline_items(); ?>
 					</select>
 
 					<br />
 					
-					<select name="tag">
+					<select id="new-tag" name="tag">
 						<?php print_tag_items($tags); ?>
 					</select>
 				
 					<br />
 				
-					<input type="button" onclick="alert('hi');" value="Create Item" />
+					<input type="button" onclick="send_new_item();" value="Create Item" />
 				</div>
 				<div>
-					<textarea name="desc"></textarea>
+					<textarea id="new-desc" name="desc"></textarea>
 				</div>
 			</form>
 		</div>

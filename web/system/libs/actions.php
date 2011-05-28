@@ -229,6 +229,20 @@ class Action {
 		MySQL::query($sql);
 	}
 	
+	/** 
+	 * createItem($user_id, $desc, $deadline, $tag)
+	 */
+	static function createItem($desc, $deadline, $tag) {
+		$_id = MySQL::clean($user_id);
+		$_desc = MySQL::clean($desc);
+		$_deadline = MySQL::clean($deadline);
+		$_tag = MySQL::clean($tag);
+		
+		$sql = "INSERT INTO `" . MySQL::$db . "`.`items` (`id`,`tag`,`description`,`deadline`,`completed`) VALUES ";
+		$sql .= "('0','{$_tag}','{$_desc}','{$deadline}','0');";
+		MySQL::query($sql);
+	}
+	
 	/**
 	 * getItems($user_id)
 	 * Return an array of the items for a user that are still due.

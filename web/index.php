@@ -48,6 +48,12 @@ $request = DetectRequest::run();
 	//print_r($request);
 	//print_r($_COOKIE);
 	
+	// Check for an internal API call to create a new todo item.
+	if (array_key_exists('new_item', $_GET) && $_GET['new_item']) {
+		include 'application/helpers/new_item.php';
+		exit();
+	}
+	
 	// Load the header.
 	if ($request['method'] !== 'post') {
 		include 'templates/' . $config['template'] . '/html/header.html';
