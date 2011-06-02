@@ -148,7 +148,23 @@ class Action {
 		// Create a sample item
 		self::createDefaultItem($id, $tag);
 		
+		// Create a cookie for the user
 		self::createCookie($_cookie);
+		
+		// Send them a welcome email
+		self::sendEmail($id, REGISTER_WELCOME_SUBJECT, REGISTER_WELCOME_EMAIL);
+	}
+	
+	/**
+	 * sendEmail($user, $msg)
+	 */
+	static function sendEmail($user, $subject, $msg) {
+		$_id = MySQL::clean($user);
+		$_sub = MySQL::clean(htmlentities(substr($subject, 0, 150)));
+		$_msg = MySQL::clean(htmlentities(substr($msg, 0, 1000)));
+		$email = self::getEmailWithId($_id);
+		
+		mail($email, $_sub, $_msg, 'FROM: adam@lystness.com');
 	}
 	
 	/**

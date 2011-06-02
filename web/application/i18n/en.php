@@ -41,7 +41,9 @@ define('REGISTER_DESC', 'It looks like you haven\'t registered yet. It\'s <em>fr
 	
 // Registration Errors
 define('REGISTER_PASSWORDS_NOT_MATCH', 'Whoops, it looks like your passwords don\'t match.');
-	define('REGISTER_EMAIL_EXISTS', 'Sorry, but that email is already in use.');
+define('REGISTER_EMAIL_EXISTS', 'Sorry, but that email is already in use.');
+define('REGISTER_WELCOME_EMAIL', "Welcome to Lystness!\n\nIf you have any questions or concerns please contact us at: adam@lystness.com\nThanks!\nhttp://lystness.com");
+define('REGISTER_WELCOME_SUBJECT', 'Thanks for registering with Lystness!');
 	
 // Default titles for tags and items
 define('DEFAULT_TAG_NAME', 'My List');
