@@ -162,9 +162,10 @@ class Action {
 		$_id = MySQL::clean($user);
 		$_sub = MySQL::clean(htmlentities(substr($subject, 0, 150)));
 		$_msg = MySQL::clean(htmlentities(substr($msg, 0, 1000)));
+			$_msg = str_replace("%%", "\r\n", $_msg);
 		$email = self::getEmailWithId($_id);
 		
-		mail($email, $_sub, $_msg, 'FROM: adam@lystness.com');
+		mail($email, $_sub, wordwrap($_msg, 70), "FROM: adam@lystness.com\nMime-Type: text/html\n");
 	}
 	
 	/**
