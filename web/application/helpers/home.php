@@ -23,7 +23,11 @@ function print_items($items) {
 				echo stripslashes($item['desc']) . ' -- <a href="index.php?tag=' . $item['tag'] . '">' . $item['tag-desc'] . '</a><br />';
 					//echo 'Completed: ' . ($item['completed'] == '1') ? 'yes' : 'no';
 				echo "<a href='#' onclick='mark_as_done({$item['id']});'>" . HOME_MARK_AS_DONE . "</a>";
-				echo ' -- Due: ' . @date('m/d', $item['deadline']);
+				if ($item['deadline'] == 2000000000) {
+					echo ' -- ' . HOME_DUE . HOME_DUE_FOREVER;
+				} else {
+					echo ' -- ' . HOME_DUE . @date('m/d', $item['deadline']);
+				}
 			echo '</span></li>';
 		}	
 	}

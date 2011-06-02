@@ -57,6 +57,8 @@ define('HOME_CREATE_TAG', 'Create Tag');
 define('HOME_CREATE_ITEM', 'Create Item');
 define('HOME_MARK_AS_DONE', 'Mark as Done');
 define('HOME_FOREVER', 'Forever');
+define('HOME_DUE', 'Due: ');
+define('HOME_DUE_FOREVER', 'In a long time');
 
 // Tags
 define('TAG_ADMINS', 'Tag Admins');
