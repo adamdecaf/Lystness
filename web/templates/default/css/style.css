@@ -108,6 +108,15 @@ section#user-home {
 			width: 95%;
 		}
 		
+aside#tag-admins {
+	float: right;
+	margin-right: 10%;
+}
+
+aside#tag-members {
+	/* */
+}
+		
 footer {
 	margin-bottom: 10px;
 	margin-top: 10px;

@@ -61,6 +61,14 @@ $request = DetectRequest::run();
 		include 'application/helpers/mark_item_complete.php';
 		exit();
 	}
+	if (array_key_exists('add_admin_to_tag', $_GET) && $_GET['add_admin_to_tag']) {
+		include 'application/helpers/add_admin_to_tag.php';
+		exit();
+	}
+	if (array_key_exists('add_member_to_tag', $_GET) && $_GET['add_member_to_tag']) {
+		include 'application/helpers/add_member_to_tag.php';
+		exit();
+	}
 	
 	// Load the header.
 	if ($request['method'] !== 'post') {

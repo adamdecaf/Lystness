@@ -19,7 +19,7 @@ function print_items($items) {
 	} else {
 		foreach ($items as $item) {
 			echo '<li><span>';
-				echo $item['desc'] . ' -- <a href="index.php?tag=' . $item['tag'] . '">' . $item['tag-desc'] . '</a><br />';
+				echo stripslashes($item['desc']) . ' -- <a href="index.php?tag=' . $item['tag'] . '">' . $item['tag-desc'] . '</a><br />';
 					//echo 'Completed: ' . ($item['completed'] == '1') ? 'yes' : 'no';
 				echo "<a href='#' onclick='mark_as_done({$item['id']});'>" . HOME_MARK_AS_DONE . "</a>";
 				echo ' -- Due: ' . @date('m/d', $item['deadline']);

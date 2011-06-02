@@ -4,5 +4,5 @@
  * Adam Shannon
  */
 
-Action::createItem($_GET['desc'], $_GET['deadline'], $_GET['tag']);
+Action::createItem($user['user_id'], $_GET['desc'], $_GET['deadline'], $_GET['tag']);
 exit();

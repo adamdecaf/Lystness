@@ -1,0 +1,22 @@
+
+	<section>
+		<aside id="tag-admins">
+			<strong><?php echo TAG_ADMINS; ?></strong>
+			<ul>
+				<?php print_admins_of_tag($admins); ?>
+			</ul>
+			
+			<?php print_add_admin_form($user['user_id'], $_tag); ?>
+		</aside>
+		
+		<article id="tag-members">
+			<strong><?php echo "\"" . Action::getTagTitle($_GET['tag']) . '" ' . TAG_MEMBERS; ?></strong>
+			<ul>
+				<?php print_members_of_tag($members); ?>
+			</ul>
+			
+			<?php print_add_member_form($user['user_id'], $_tag); ?>
+		</article>
+		
+		<input type="hidden" id="tag" value="<?php echo htmlentities(MySQL::clean($_GET['tag'])); ?>" />
+	</section>

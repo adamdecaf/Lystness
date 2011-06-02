@@ -48,7 +48,6 @@ class Action {
 		$__hash = self::getHashWithId($_id);
 		$__salt = MySQL::single("SELECT `salt` FROM `" . MySQL::$db . "`.`users` WHERE `id` = '{$_id}' LIMIT 1;");
 		
-		echo $_pass . $__salt['salt'] . '<br />';
 		//echo '-' . self::genHash($_pass . $__salt['salt']) . '- -- -' . $__hash . '-<br />';
 		if (self::genHash($_pass . $__salt['salt']) == $__hash) {
 			return true;
@@ -242,6 +241,28 @@ class Action {
 	}
 	
 	/**
+	 * addUserToTag($user, $tag)
+	 */
+	static function addUserToTag($user, $tag) {
+		$_u = MySQL::clean($user);
+		$_t = MySQL::clean($tag);
+		
+		$sql = "INSERT INTO `" . MySQL::$db . "`.`user-tags` (`user_id`,`tag_id`) VALUES ('{$_u}','{$_t}')";
+		MySQL::query($sql);
+	}
+	
+	/**
+	 * addAdminToTag($user, $tag)
+	 */
+	static function addAdminToTag($user, $tag) {
+		$_u = MySQL::clean($user);
+		$_t = MySQL::clean($tag);
+		
+		$sql = "INSERT INTO `" . MySQL::$db . "`.`admin-tags` (`user_id`,`tag_id`) VALUES ('{$_u}','{$_t}')";
+		MySQL::query($sql);
+	}
+	
+	/**
 	 * createDefaultItem($user_id, $tag)
 	 */
 	static function createDefaultItem($user_id, $tag) {
@@ -256,17 +277,19 @@ class Action {
 	/** 
 	 * createItem($user_id, $desc, $deadline, $tag)
 	 */
-	static function createItem($desc, $deadline, $tag) {
+	static function createItem($user_id, $desc, $deadline, $tag) {
+		$_id = MySQL::clean($user_id);
 		$_desc = MySQL::clean(substr($desc, 0, 150));
 		$_deadline = MySQL::clean($deadline);
 		$_tag = MySQL::clean($tag);
 		
-		$sql = "INSERT INTO `" . MySQL::$db . "`.`items` (`id`,`tag`,`description`,`deadline`,`completed`) VALUES ";
-		$sql .= "('0','{$_tag}','{$_desc}','{$deadline}','0');";
+		if (self::authTagChange($_id, $_tag)) {
+			$sql = "INSERT INTO `" . MySQL::$db . "`.`items` (`id`,`tag`,`description`,`deadline`,`completed`) VALUES ";
+			$sql .= "('0','{$_tag}','{$_desc}','{$deadline}','0');";
+			MySQL::query($sql);
+		}
 		
 		// TODO: Increment the tag's `count` value.
-		
-		MySQL::query($sql);
 	}
 	
 	/**
@@ -275,7 +298,7 @@ class Action {
 	 */
 	static function getItems($user_id, $tags) {
 		$_id = MySQL::clean($user_id);
-		$now = @time();
+		$now = @time() - 86400;
 		$items = array();
 		
 		foreach ($tags as $tag) {
@@ -348,11 +371,28 @@ class Action {
 		foreach ($tags as $tag) {
 			if (in_array($_tag, $tag)) {
 				$sql = "UPDATE `" . MySQL::$db . "`.`items` SET  `completed` =  '1' WHERE  `items`.`id` = '" . $_item . "';";
-				echo $sql;
 				MySQL::query($sql);
 				exit();
 			}
 		}
+	}
+	
+	/**
+	 * getMembersOfTag($tag)
+	 */
+	static function getMembersOfTag($tag) {
+		$_tag = MySQL::clean($tag);
+		$members = MySQL::search("SELECT `user_id` FROM `" . MySQL::$db . "`.`user-tags` WHERE `tag_id` = '{$_tag}' LIMIT 1000;");
+		return $members;
+	}
+	
+	/**
+	 * getAdminsOfTag($tag)
+	 */
+	static function getAdminsOfTag($tag) {
+		$_tag = MySQL::clean($tag);
+		$admins = MySQL::search("SELECT `user_id` FROM `" . MySQL::$db . "`.`admin-tags` WHERE `tag_id` = '{$_tag}' LIMIT 1000;");
+		return $admins;
 	}
 	
 	/**

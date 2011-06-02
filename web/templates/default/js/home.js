@@ -45,3 +45,25 @@ function mark_as_done(item_id) {
 	window.location.reload();
 	
 }
+
+function add_admin() {
+	var xhr = get_xhr();
+	var user = encodeURIComponent(document.querySelector('#new-admin').value);
+	var tag = encodeURIComponent(document.querySelector('#tag').value);
+	
+	xhr.open('GET', 'index.php?add_admin_to_tag=true&user_id=' + user + '&tag=' + tag, false);
+	xhr.send(null);
+	
+	window.location.reload();
+}
+
+function add_member() {
+	var xhr = get_xhr();
+	var user = encodeURIComponent(document.querySelector('#new-member').value);
+	var tag = encodeURIComponent(document.querySelector('#tag').value);
+	
+	xhr.open('GET', 'index.php?add_member_to_tag=true&user_id=' + user + '&tag=' + tag, false);
+	xhr.send(null);
+	
+	window.location.reload();
+}

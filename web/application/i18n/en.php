@@ -54,3 +54,9 @@ define('HOME_NO_ITEMS', 'Sorry, there are no items to display.');
 define('HOME_CREATE_TAG', 'Create Tag');
 define('HOME_CREATE_ITEM', 'Create Item');
 define('HOME_MARK_AS_DONE', 'Mark as Done');
+
+// Tags
+define('TAG_ADMINS', 'Tag Admins');
+define('TAG_MEMBERS', 'Tag Members');
+define('TAG_ADD_ADMIN_BUTTON', 'Add Admin');
+define('TAG_ADD_MEMBER_BUTTON', 'Add Member');
