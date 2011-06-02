@@ -97,7 +97,7 @@ class Action {
 	 *
 	 */
 	static function createCookie($cookie) {
-		setcookie('user', $cookie);
+		setcookie('user', $cookie, @time()+60*60*24*30);
 	}
 	 
 	/**
@@ -279,7 +279,7 @@ class Action {
 		$items = array();
 		
 		foreach ($tags as $tag) {
-			$_tmp = MySQL::search("SELECT * FROM `" . MySQL::$db . "`.`items` WHERE `tag` = '{$tag['tag_id']}' AND `deadline` > '{$now}' ORDER BY `deadline` ASC;");
+			$_tmp = MySQL::search("SELECT * FROM `" . MySQL::$db . "`.`items` WHERE `tag` = '{$tag['tag_id']}' AND `deadline` > '{$now}' AND `completed` != '1' ORDER BY `deadline` ASC;");
 			foreach ($_tmp as $_a) {
 				array_push($items, array(
 					'id' => $_a['id'],
@@ -325,6 +325,34 @@ class Action {
 		$_id = MySQL::clean($tag_id);
 		$_tmp = MySQL::single("SELECT `title` FROM `" . MySQL::$db . "`.`tags` WHERE `id` = '{$_id}' LIMIT 1");
 		return $_tmp['title'];
+	}
+	
+	/**
+	 * getItemTag($item)
+	 */
+	static function getItemTag($item) {
+		$_item = MySQL::clean($item);
+		$tmp = MySQL::single("SELECT `tag` FROM `" . MySQL::$db . "`.`items` WHERE `id` = '{$_item}' LIMIT 1;");
+		return $tmp['tag'];
+	}
+	
+	/** 
+	 * markItemComplete($user_id, $item_id)
+	 */
+	static function markItemComplete($user_id, $item_id) {
+		$_id = MySQL::clean($user_id);
+		$_item = MySQL::clean($item_id);
+		$tags = self::getTags($_id);
+		$_tag = self::getItemTag($_item);
+		
+		foreach ($tags as $tag) {
+			if (in_array($_tag, $tag)) {
+				$sql = "UPDATE `" . MySQL::$db . "`.`items` SET  `completed` =  '1' WHERE  `items`.`id` = '" . $_item . "';";
+				echo $sql;
+				MySQL::query($sql);
+				exit();
+			}
+		}
 	}
 	
 	/**

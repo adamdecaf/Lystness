@@ -57,6 +57,10 @@ $request = DetectRequest::run();
 		include 'application/helpers/new_tag.php';
 		exit();
 	}
+	if (array_key_exists('mark_item_complete', $_GET) && $_GET['mark_item_complete']) {
+		include 'application/helpers/mark_item_complete.php';
+		exit();
+	}
 	
 	// Load the header.
 	if ($request['method'] !== 'post') {

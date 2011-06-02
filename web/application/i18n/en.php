@@ -53,3 +53,4 @@ define('HOME_TAGS', 'Tags');
 define('HOME_NO_ITEMS', 'Sorry, there are no items to display.');
 define('HOME_CREATE_TAG', 'Create Tag');
 define('HOME_CREATE_ITEM', 'Create Item');
+define('HOME_MARK_AS_DONE', 'Mark as Done');
