@@ -10,7 +10,7 @@ $items = Action::getItems($user['user_id'], $tags);
 function print_tags($tags) {
 	foreach ($tags as $tag) {
 		echo "<li><a href='index.php?tag={$tag['tag_id']}'>{$tag['title']}</a>";
-		echo "</li>";
+		echo " <span style='cursor:pointer;' onclick='delete_tag({$tag['tag_id']});'>[x]</span></li>";
 	}
 }
 

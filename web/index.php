@@ -69,6 +69,10 @@ $request = DetectRequest::run();
 		include 'application/helpers/add_member_to_tag.php';
 		exit();
 	}
+	if (array_key_exists('delete_tag', $_GET) && $_GET['delete_tag']) {
+		include 'application/helpers/delete_tag.php';
+		exit();
+	}
 	
 	// Load the header.
 	if ($request['method'] !== 'post') {

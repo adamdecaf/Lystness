@@ -258,6 +258,21 @@ class Action {
 	}
 	
 	/**
+	 * deleteTag($tag)
+	 */
+	static function deleteTag($user, $tag) {
+		$_i = MySQL::clean($user);
+		$_t = MySQL::clean($tag);
+		
+		$sql = "DELETE FROM `" . MySQL::$db . "`.`tags` WHERE `tags`.`id` = '{$_t}';";
+		MySQL::query($sql);
+		
+		$sql = "DELETE FROM `" . MySQL::$db . "`.`user-tags` WHERE `user-tags`.`user_id` = '{$_i}' AND `user-tags`.`tag_id` = '{$_t}';";
+		echo $sql;
+		MySQL::query($sql);
+	}
+	
+	/**
 	 * addUserToTag($user, $tag)
 	 */
 	static function addUserToTag($user, $tag) {

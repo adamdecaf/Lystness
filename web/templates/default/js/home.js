@@ -67,3 +67,13 @@ function add_member() {
 	
 	window.location.reload();
 }
+
+function delete_tag(tag) {
+	var _t = encodeURIComponent(tag);
+	var xhr = get_xhr();
+	
+	xhr.open('GET', 'index.php?delete_tag=true&tag=' + _t, false);
+	xhr.send();
+	
+	window.location.reload();
+}
