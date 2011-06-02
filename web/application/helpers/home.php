@@ -33,6 +33,7 @@ function print_deadline_items() {
 	$now = @time();
 	$day = @date('m/d', $now);
 	
+		echo "<option value='2000000000'>" . HOME_FOREVER . "</option>";
 	for ($i = 0; $i < 30; $i++) {
 		echo "<option value='{$now}'>{$day}</option>";
 		$now += 86400;
