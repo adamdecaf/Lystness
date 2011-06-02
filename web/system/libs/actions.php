@@ -315,6 +315,12 @@ class Action {
 			}
 		}
 		
+		// We need a special nested function to compare
+		function cmp($a, $b) {
+			return ($a['deadline'] > $b['deadline']) ? 1 : -1;
+		}
+		
+		$item = usort($items, "cmp");
 		return $items;
 	}
 	
