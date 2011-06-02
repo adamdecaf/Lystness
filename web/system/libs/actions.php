@@ -305,7 +305,14 @@ class Action {
 			MySQL::query($sql);
 		}
 		
-		// TODO: Increment the tag's `count` value.
+		/**
+		 * This is actually pointless, IMO
+		 * a) No one cares about how many hundreds of tags they've made in the history of that tag
+		 * b) It takes too much work to keep the tag's count up to date (polling several tables each item/tag change)
+		 * c) That space can be better used, for say, the delete button
+		 */
+		// Increment the tag's `count` value.
+		//self::incrementTagCount($_tag);
 	}
 	
 	/**
