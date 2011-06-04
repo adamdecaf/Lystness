@@ -65,3 +65,40 @@ define('TAG_ADMINS', 'Tag Admins');
 define('TAG_MEMBERS', 'Tag Members');
 define('TAG_ADD_ADMIN_BUTTON', 'Add Admin');
 define('TAG_ADD_MEMBER_BUTTON', 'Add Member');
+
+// Contact
+define('CONTACT_TITLE', 'Contact Us');
+define('CONTACT_DESC', 'Feel free to send any comments, questions, concerns, errors, or anything to us at: <a href="mailto:adam@lystness.com"><strong>adam [at] lystness.com</strong></a>');
+
+// Legal
+define('LEGAL_TITLE', 'Legal Information');
+define('LEGAL_PRETEXT', 'This site is designed with the ideas and attitudes of you, the user, in our vision. We are trying to make this site the way you want, and if there&quot;s anything we can do which will perform that, please let us know. <a href="mailto:adam@lystness.com">adam [at] lystness.com</a>');
+define('LEGAL_GOALS_DESC', 'Our Goals');
+
+define('LEGAL_GOAL_1', 'Your Data is Your Data');
+	define('LEGAL_DESC_1', 'Any data (text, events, etc..) that you send to us is your data. You are (if legally true) the owner and maintainer of that. Yes, we will keep backups of the data, but that is for restoration in the event of a failure. If you submit anything that is not yours, it is your fault and responsibility.');
+	
+define('LEGAL_GOAL_2', 'Other People Have Rights');
+	define('LEGAL_DESC_2', 'Creating tags and adding people only to annoy, spam, or harass them is strictly forbidden. Doing so will result in the loss of your account and possible civil suit by the people you annoy.');
+	
+define('LEGAL_GOAL_3', 'We Respect Your Rights');
+	define('LEGAL_DESC_3', 'Lystness will do whatever it can to protect you. We like you and want to keep you. If we recieve legal threats we will do our best to protect you and your data.');
+	
+define('LEGAL_GOAL_4', 'You Agree to This and it May Change');
+	define('LEGAL_DESC_4', 'By Creating an account you agree to these terms and their possible outcomings. Also, these terms can be modified (in full or part) without your knowledge or concent. (However, doing so without notifying you would be annoying, so we will let you know.)');
+	
+// Tour
+define('TOUR_TITLE', 'A Simple Tour');
+define('TOUR_INTRO', 'This site may look scary, sorry about that. It really is a nice site that doesn\'t bite or anything. However, it is different than most todo list applications, but it\'s pretty neat. :)');
+
+define('TOUR_DESC', 'What is Lystness?');
+define('TOUR_DESC_DESC', 'Lystness is a todo application which is designed for both group and personal item tracking. You create items and assign them to tags, of which you can share a tag with people to allow them to see and edit items on that tag. Beyond that there really isn\'t anything more complicated.');
+
+define('TOUR_REGISTER', 'Creating an Account');
+define('TOUR_REGISTER_DESC', 'In order to keep track of your things, you will need to create an account. Lucky for you it\'s completely free and quite painless! All you need to do is fill out the form on your bottom left and, that\'s it!');
+
+define('TOUR_ITEM', 'Remember Something Todo');
+define('TOUR_ITEM_DESC', 'Alright, so you just created an account. Good. You see an item there showing you what items look like, but you have something to remember. Maybe it\'s to get food tonight, or that interview tomorrow. Go ahead and type it into the box, fill out the dropdown menus and click "Create Item"! Your item will be saved and shown to you.');
+
+define('TOUR_TAG', 'Organize Your Things');
+define('TOUR_TAG_DESC', 'You seem like someone who does a lot. Perhaps you would like to use tags to organize your thoughts. Go ahead and below "My List" type something in and press "Create Tag". Now when you create items you can organize them into that tag. Pretty simple, huh?');
